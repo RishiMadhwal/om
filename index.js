@@ -1,12 +1,13 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors'); // ✅ Add this
 const app = express();
+
+app.use(cors()); // ✅ Enable CORS
+app.use(express.json()); // ✅ Parse JSON
 
 // WhatsApp client initializer + QR getter
 const { client, getLatestQR } = require('./client');
-
-// Middleware to parse JSON
-app.use(express.json());
 
 // ✅ User Routes
 const userRoutes = require('./src/routes/userRoutes');
